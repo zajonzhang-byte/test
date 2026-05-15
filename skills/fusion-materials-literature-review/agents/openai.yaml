@@ -1,0 +1,7 @@
+interface:
+  display_name: "Fusion Materials Literature Review"
+  short_description: "Plan, draft, and critique fusion materials literature reviews."
+  default_prompt: "Use $fusion-materials-literature-review to build a mechanism-centered literature review outline for my nuclear fusion materials topic."
+
+policy:
+  allow_implicit_invocation: true
