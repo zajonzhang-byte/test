@@ -1,0 +1,4 @@
+interface:
+  display_name: "W-He-H Migration Writing"
+  short_description: "Tungsten H-He migration paper writing workflow"
+  default_prompt: "Use $w-he-h-migration-writing to draft a CINEB/VASP paper section about interstitial helium clusters affecting hydrogen migration in tungsten."
