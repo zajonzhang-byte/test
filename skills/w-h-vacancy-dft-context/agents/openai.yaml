@@ -1,0 +1,4 @@
+interface:
+  display_name: "W-H Vacancy DFT Context"
+  short_description: "W-H vacancy DFT context for VASP."
+  default_prompt: "Use $w-h-vacancy-dft-context when answering my W-H vacancy DFT, VASP, CI-NEB, KPOINTS, vacancy formation, H trapping, or NEB path questions."
