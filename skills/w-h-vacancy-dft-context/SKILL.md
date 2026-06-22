@@ -86,6 +86,19 @@ description: Use this skill as persistent research context when the user asks ab
 
 回答 K 点相关问题时，需要结合实际晶胞边长、体系大小、是否是静态弛豫、NEB 还是高精度能量比较来判断。应根据具体超胞尺寸和收敛性测试结果选择合适的 K 点方案，而不是采用固定的经验设置。
 
+## 能量取值约定
+
+所有完成结构优化后的体系，统一使用 VASP `OUTCAR` 中最后一个离子步的 `free energy TOTEN` 作为能量值，并以 eV 为单位。进行空位形成能、H 捕获能、H 结合能、Frenkel 缺陷形成能、末态相对能量以及其他优化后结构的能量比较时，都将相应体系的最终 `TOTEN` 代入公式。
+
+此约定只适用于完成结构优化后的静态体系能量，不包含 NEB 路径或 NEB image 的能量取值。
+
+执行和回答时遵守以下规则：
+
+- 统一读取 `OUTCAR` 中最后一个离子步对应的 `free  energy   TOTEN`。
+- 不使用或混用 `energy without entropy`、`energy(sigma->0)`、OSZICAR 中的 `E0` 或其他能量字段替代该约定。
+- 比较不同体系的 `TOTEN` 时，优先确认所用 POTCAR、ENCUT、KPOINTS、展宽设置、电子收敛标准及其他关键参数保持一致或具有严格可比性。
+- 使用最终 `TOTEN` 不代表结构自动收敛；仍需单独检查离子步、力、电子收敛和任务终止状态。
+
 ## 回答偏好
 
 回答用户时，尽量按照以下方式组织：
@@ -95,6 +108,7 @@ description: Use this skill as persistent research context when the user asks ab
 - 如果涉及建模，指出初态、末态、原子对应关系和周期性边界条件是否合理。
 - 如果涉及 NEB，重点检查初末态是否物理合理、是否存在原子编号错配、是否需要 IDPP、image 数量是否足够、是否可能出现不合理的原子穿越或跳跃、H 原子是否应该跟随弛豫、末态是否需要充分弛豫。
 - 如果涉及能量，区分空位形成能、H 捕获能、H 结合能、Frenkel 缺陷形成能、NEB 迁移能垒和末态相对能量。
+- 如果涉及优化后能量的读取、比较或公式计算，统一使用 `OUTCAR` 最后一个离子步的 `TOTEN`。
 - 如果用户的说法可能有问题，直接指出，不要顺着错误假设继续回答。
 - 语言风格采用“大白话 + 学术审查”：既要让用户听懂，也要保证计算逻辑严谨。
 
